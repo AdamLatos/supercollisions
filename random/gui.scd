@@ -1,4 +1,4 @@
-
+s.boot;
 
 (
 SynthDef(\chords, {
@@ -42,17 +42,19 @@ Button.new(window, Rect(5, 5, 140, 90))
             button.value = 0;
         };
     });
-EZSlider.new(window,Rect(145,5,200,30),"Speed",\unipolar)
+EZSlider.new(window,Rect(145,5,300,30),"Speed",\unipolar)
     .action_({ |slider|
 	~dur.source = Pwrand(#[1, 0.5] / ((5*slider.value)+1), #[0.8, 0.2], inf);
 });
-EZSlider.new(window,Rect(145,35,200,30),"Cutoff",\unipolar)
+EZSlider.new(window,Rect(145,35,300,30),"Cutoff",\unipolar)
     .action_({ |slider|
 	~cutoff.source = (slider.value*1950);
 });
-EZSlider.new(window,Rect(145,65,200,30),"Rq",\unipolar)
+EZSlider.new(window,Rect(145,65,300,30),"Rq",\unipolar)
     .action_({ |slider|
 	~rq.source = slider.value;
 });
 window.front;
 )
+
+

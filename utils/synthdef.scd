@@ -19,3 +19,6 @@ Pbind(
 ).play;
 
 )
+
+{ Pan2.ar(SinOsc.ar(440), 0) }.play
+
