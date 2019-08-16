@@ -11,7 +11,7 @@ SynthDef(\kick1,
 		distort=0.2, mult=3, hit=0.5, mix=0;
 		var sig, env, sweep1, sweep2, hitsaw;
 
-		sweep1 = Line.kr(freq*mult, freq, sweepspd);
+		sweep1 = Line.kr(freq*mult, freq, 0.1);
 		sweep2 = Env([freq*10,freq,freq/4],[0.01,0.2],[1,-1]).ar;
 		env = Env([0,1,0], [atk,rel], [c1,c2]).kr(2);
 
@@ -22,28 +22,26 @@ SynthDef(\kick1,
 		hitsaw = hit * (Saw.ar * Env.perc(0.0001,rel/3).ar);
 		sig = sig + hit;
 
-		sig = sig * env * amp * (1-mult/10);
+		sig = sig * env * amp;
 		sig = Pan2.ar(sig, pan);
 		Out.ar(out, sig);
 }).add;
-)
 
-(
-Pbind(
-	\instrument, \kick1,
-	\dur, Pseq([0.4,Pseq([0.2, 0.2]),Pseq([0.8/3,0.8/3,0.8/3])],inf),
-	\distort, Pseq([0,0.25,0.5,0.75,1],inf),
-	\freq, Pseq([50,60,70], inf),
-	\amp, Pxrand([1,1,1,1,1,1,\],inf).trace,
-	\c1, 2,
-	\c2, -8,
-	\mult, Prand([3,2],inf),
-	\atk, 0.004,
-	\mix, Pseq([0,0.2,0.4,0.6],inf),
-).play(quant: 0.8);
-)
+Pdef(\idmkick,
+	Pbind(
+		\instrument, \kick1,
+		\dur, Pseq([0.4,Pseq([0.2, 0.2]),Pseq([0.8/3,0.8/3,0.8/3])],inf),
+		\distort, Pseq([0,0.25,0.5,0.75,1],inf),
+		\freq, Pseq([50,60,70], inf),
+		\amp, Pxrand([1,1,1,1,1,1,\],inf),
+		\c1, 2,
+		\c2, -8,
+		\mult, Prand([3,2],inf),
+		\atk, 0.004,
+		\mix, Pseq([0,0.2,0.4,0.6],inf),
+));
 
-(
+Pdef(\fastkick,
 Pbind(
 	\instrument, \kick1,
 	\dur, 1/10 + Pseq([-0.01, 0.01, -0.01, 0.01],inf),
@@ -53,6 +51,13 @@ Pbind(
 	\mix, 0.2,
 	\hit, 0,
 	\mult, Pseq([1,2,4,1,2,3,1],inf)
-).play(quant: 0.8);
-//s.record(duration:10);
+));
 )
+
+Pdef(\idmkick).play(quant:0.8);
+Pdef(\fastkick).play(quant:0.8);
+
+
+Pdef(\idmkick).stop;
+Pdef(\fastkick).stop;
+

@@ -24,38 +24,38 @@ SynthDef(\snare1,
 		sig = Pan2.ar(sig, pan, amp);
 		Out.ar(out, sig);
 }).add;
-)
 
-Synth(\snare1)
 
-(
-Pbind(
-	\instrument, \snare2,
+Pdef(\snares,
+    Pbind(
+	\instrument, \snare1,
 	\dur, Pn(4/5),
 	\freq, Pseq([160
 	],inf),
-	\amp, 0.5,
+	\amp, 0.4,
 	\lpf, 7000,
 	\att, 0.005,
 	\rel, Pseq([0.2,0.2,0.2,0.4,0.2,0.15,0.2,0.3],inf),
 	\rattle, 0.5,
 	\tension, 5,
 	\body, 0.3,
-).play(quant:1);
+));
+
+Pdef(\snareroll,
+	Pbind(
+		\instrument, \snare1,
+		\dur, Pn(Pn(1/16,8)++Pn(1/8,1)++Pn(1/12,3)++Pn(1/16,2),2),
+		\freq, 100,
+		\res, Pwhite(0.2,1),
+		\amp, 0.5 * Pn(Pn(0.5,1)++Pexprand(0.1,0.2,8)++Pn(0.5,1)++Pn(0.1,4)),
+		\lpf, Pn(Pseries(20000,(-2000),8)++Pn(\,1)++Pseries(2000,(-300),6)
+			++Pseries(2000,300,6)++Pseries(10000,(-100),8)),
+		\rattle, Pwhite(0,1),
+		\body, 0.1,
+));
 )
 
-(
-Pbind(
-	\instrument, \snare2,
-	\dur, Pn(Pn(1/16,8)++Pn(1/8,1)++Pn(1/12,3)++Pn(1/16,2)),
-	\freq, 200,
-	\res, Pwhite(0.4,1),
-	\amp, Pn(Pn(0.5,1)++Pexprand(0.1,0.2,8)++Pn(0.5,1)++Pn(0.1,4)),
-	\lpf, Pn(Pseries(20000,(-2000),8)++Pn(\,1)++Pseries(2000,(-300),6)
-		++Pseries(2000,300,6)++Pseries(10000,(-100),8)),
-	\rattle, Pwhite(0,1),
-	\body, 0.1,
-).play(quant:1);
-)
+Pdef(\snareroll).play(quant:0.4);
+Pdef(\snares).play(quant:1.6);
 
-8+2+4
+Pdef(\snares).stop;

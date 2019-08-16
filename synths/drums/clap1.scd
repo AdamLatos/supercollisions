@@ -34,11 +34,15 @@ SynthDef(\clap1, {
 	Out.ar(out, Balance2.ar(snd[0],snd[1],pan,amp));
 }).add;
 
-Pbind(
+Pdef(\clap,
+	Pbind(
 	\instrument, \clap1,
-	\dur, Prand([Pseq([0.012,0.005,0.483+0.3],1),Pseq([0.01,0.027,0.463+0.3])],inf),
-	\pan, Prand([Pseq([-0.4,0.1,-0.2]), Pseq([0,0.5,-0.1])],inf),
-	\width, Pn(Pseries(0,0.05,15)++Pseries(15*0.05,-0.05,15)),
-).play(quant:0.8);
-
+		\dur, Prand([Pseq([0.012,0.005,0.483+0.3],1),Pseq([0.01,0.027,0.463+0.3])],inf),
+		\pan, Prand([Pseq([-0.4,0.1,-0.2]), Pseq([0,0.5,-0.1])],inf),
+		\width, Pn(Pseries(0,0.05,15)++Pseries(15*0.05,-0.05,15)),
+));
 )
+
+Pdef(\clap).play(quant:0.8);
+
+Pdef(\clap).stop;
