@@ -40,19 +40,19 @@ Pbind(
 	\mult, Prand([3,2],inf),
 	\atk, 0.004,
 	\mix, Pseq([0,0.2,0.4,0.6],inf),
-).play(quant: 1);
+).play(quant: 0.8);
 )
 
 (
 Pbind(
 	\instrument, \kick1,
-	\dur, 1/10,
+	\dur, 1/10 + Pseq([-0.01, 0.01, -0.01, 0.01],inf),
 	\freq, 60,
 	\amp, Pseq([0.8,0.5,0.2,0.1],inf),
 	\rel, Pseq([0.1,0.5,0.2,0.1],inf),
 	\mix, 0.2,
 	\hit, 0,
 	\mult, Pseq([1,2,4,1,2,3,1],inf)
-).play(quant: 1);
+).play(quant: 0.8);
 //s.record(duration:10);
 )

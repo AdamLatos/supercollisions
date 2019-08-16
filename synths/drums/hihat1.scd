@@ -28,18 +28,18 @@ Pbind(
 	\atk, Pn(Pseries(0.01,0.002,12)),
 	\rel, Pwhite(0.05,0.15,inf),
 	\res, 1,
-).play(quant: 1);
+).play(quant: 0.8);
 )
 
 (
 Pbind(
 	\instrument, \hihat1,
-	\amp, Pn(Pseq([0.5,0.4],16)++Pseq([0.4,0.3],16)),
+	\amp, Pn(Pseq([0.5,0.4],8)++Pseq([0.3,0.2],8)) * 0.8,
 	\dur, 0.1,
 	\hpf, Pexprand(1000,20000),
 	\lpf, Pexprand(2000,21000),
-	\atk, Pn(Pn(0.001,16) ++ Pn(0.05,16)),
-	\rel, Pn(Pn(0.05,16) ++ Pn(0.2,16)),
+	\atk, Pn(Pn(0.001,16) ++ Pn(0.05,8) ++ Pn(0.01,8)),
+	\rel, Pn(Pn(0.05,16) ++ Pn(0.2,8) ++ Pn(0.01,8)),
 	\res, Pexprand(0.15,1),
-).play(quant: 1);
+).play(quant: 0.8);
 )
