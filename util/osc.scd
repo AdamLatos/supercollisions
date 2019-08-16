@@ -145,11 +145,5 @@ SynthDef.new(\kick,
 }).add;
 )
 
-Synth(\kick);
-
-x.free;
-x.getMsg(\cutoff)
-x.get(\cutoff, {arg val; val.postln;})
-
 s.record;
 s.stopRecording;
