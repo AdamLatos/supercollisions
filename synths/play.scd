@@ -55,7 +55,7 @@ x = Pbind(
 	\amp, 0.3
 ).play(quant:0.8);
 )
-
+x.stop;
 (
 
 Pbind(

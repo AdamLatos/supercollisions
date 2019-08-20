@@ -78,14 +78,15 @@ Pdef(\bigbass2,
 ));
 )
 
-Pdef(\progression1).play(quant:6.4);
-Pdef(\progression2).play(quant:6.4);
-Pdef(\boops).play(quant:3.2);
 Pdef(\bigbass1).play(quant:6.4);
+Pdef(\progression1).play(quant:6.4);
+Pdef(\boops).play(quant:3.2);
+
 Pdef(\bigbass2).play(quant:6.4);
+Pdef(\progression2).play(quant:6.4);
 
 Pdef(\progression1).stop;
-Pdef(\progression2).stop;
-Pdef(\boops).stop;
 Pdef(\bigbass1).stop;
+Pdef(\boops).stop;
 Pdef(\bigbass2).stop;
+Pdef(\progression2).stop;

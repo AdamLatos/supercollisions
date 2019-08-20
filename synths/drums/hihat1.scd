@@ -18,7 +18,7 @@ SynthDef(\hihat1,
 Pdef(\hats,
 	Pbind(
 		\instrument, \hihat1,
-		\amp, Pseq([0.5, Pn(0.2,9), 0.5, Pn(0.2,10)],inf),
+		\amp, 0.5 * Pseq([0.5, Pn(0.2,9), 0.5, Pn(0.2,10)],inf),
 		\dur, Pseq([
 			Pseq([0.2,0.2,0.2,0.2,0.1,0.1,0.1,0.1,0.2,0.2],1),
 			Pseq([0.2,0.2,0.2,0.2,0.05,0.05,0.05,0.05,0.2,0.2,0.2],1)],inf),
@@ -32,7 +32,7 @@ Pdef(\hats,
 Pdef(\halfhats,
 	Pbind(
 		\instrument, \hihat1,
-		\amp, Pn(Pseq([0.5,0.4],8)++Pseq([0.3,0.2],8)) * 0.6,
+		\amp, 0.5 * Pn(Pseq([0.5,0.4],8)++Pseq([0.3,0.2],8)) * 0.6,
 		\dur, 0.1,
 		\hpf, Pexprand(1000,20000),
 		\lpf, Pexprand(2000,21000),

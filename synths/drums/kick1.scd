@@ -46,7 +46,7 @@ Pbind(
 	\instrument, \kick1,
 	\dur, 1/10 + Pseq([-0.01, 0.01, -0.01, 0.01],inf),
 	\freq, 60,
-	\amp, Pseq([0.8,0.5,0.2,0.1],inf),
+	\amp, Pseq([1,0.6,0.4,0.4],inf),
 	\rel, Pseq([0.1,0.5,0.2,0.1],inf),
 	\mix, 0.2,
 	\hit, 0,
@@ -56,7 +56,6 @@ Pbind(
 
 Pdef(\idmkick).play(quant:0.8);
 Pdef(\fastkick).play(quant:0.8);
-
 
 Pdef(\idmkick).stop;
 Pdef(\fastkick).stop;

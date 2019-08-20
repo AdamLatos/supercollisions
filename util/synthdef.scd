@@ -1,12 +1,13 @@
 
 (
 SynthDef(\named, {
-	arg out, amp=1, freq=440, atk=0.1, dec=0.2, sus=1, rel=0.3, detune=0.01, width=0.5, gate=1, pan=0;
-	var sig;
+	arg out=0, amp=0.2, freq=440, atk=0.1, rel=0.5, pan=0;
+	var sig, env;
 
-    sig = VarSaw.ar([freq, freq * detune], 0, width);
+	env = Env.perc(atk, rel).ar(2);
+    sig = SinOsc.ar(freq);
 
-	sig = sig * EnvGen.kr(Env.adsr(atk, dec, sus, rel), gate, amp, doneAction: Done.freeSelf);
+	sig = sig * env * amp;
 	sig = Pan2.ar(sig, pan);
 	Out.ar(out, sig);
 }).add;
@@ -14,11 +15,7 @@ SynthDef(\named, {
 Pbind(
 	\instrument, \named,
 	\dur, Pseq([0.5, 1],inf),
-	\degree, Pseq([1, 4, 5, 4],inf) + Prand([[0,3,5]],inf),
-	\pan, Pseq([0.3, -0.3, -0.3, 0.3, 0.3, 0.3], inf),
+	\amp, 0.2,
 ).play;
 
 )
-
-{ Pan2.ar(SinOsc.ar(440), 0) }.play
-
