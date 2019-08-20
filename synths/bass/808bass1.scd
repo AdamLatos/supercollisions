@@ -18,9 +18,10 @@ SynthDef(\bass808, {
 Pbind(
 	\instrument, \bass808,
 	\amp, 0.1,
-	\dur, Pseq([0.5, 0.8, 0.2, 0.5],inf),
-	\midinote, Pseq([32, 32, 44, 32, 32, 39, 32, 32],inf),
-).play(quant:0.8);
+	\dur, Pseq([4, 0.5, 0.2, 0.8, 1.5, 1],inf)*4,
+	\stretch, 0.52,
+	\midinote, Pseq([36, 36, 48, 36, 36, 43, 36, 36],inf),
+).play(quant:4);
 
 )
 
