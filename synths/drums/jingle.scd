@@ -32,11 +32,11 @@ SynthDef(\jingle, {
 
 Pbind(
 	\instrument, \jingle,
-	\dur, Pn(Pseq([0.10],24)++Pn(0.8,1)),
+	\dur, Pn(Pseq([0.1],24)++Pn(0.8,1)),
 	\amp, Pn(Pn(Pseq([0.2])++Pn(0.1,7),3)++Pn(0.2,1)),
 	\freq, Pn(Pexprand(950,1050,24)++Pn(1000,1)),
 	\tone, Pn(Pseq([0,0.25,0.5,0.75,1,0.6,0.4,0.2],3)++Pn(0.1,1)),
-	\rel, Pn(Pn(0.2,24)++Pn(2,1)),
-).play;
+	\rel, Pn(Pn(0.15,24)++Pn(2,1)),
+).play();
 
 )
